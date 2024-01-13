@@ -47,3 +47,4 @@ However, this might not be necessary if we have some light front-end driven inte
 - [ ] How do we deal with requests interactivity while offline?
 - [ ] How do we fire off requests from DB once we go back online?
 - [ ] Add optional "ship to server" parameter
+- [ ] Dedupe or ignore duplicate requests
