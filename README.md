@@ -31,9 +31,11 @@ However, this might not be necessary if we have some light front-end driven inte
 
 ### Dumping Ground
 
-Possibility to use replicache. Lean on localStorage and then a background (worker?) process deals with CRDTs. Ultimately you'd end up patching the DB...
-
-Optimistic updates
+* Possibility to use replicache. Lean on localStorage and then a background (worker?) process deals with CRDTs. Ultimately you'd end up patching the DB...
+* Optimistic updates
+* To capture htmx requests
+* - https://github.com/bigskysoftware/htmx/blob/master/src/htmx.js#L2217
+  - Possibly do something like document.addEventListener('htmx:beforeRequest') -> get event data somehow
 
 ### TODO
 
@@ -44,3 +46,4 @@ Optimistic updates
 - [ ] How do we store required success/fail operations when we finally ship the requests?
 - [ ] How do we deal with requests interactivity while offline?
 - [ ] How do we fire off requests from DB once we go back online?
+- [ ] Add optional "ship to server" parameter
