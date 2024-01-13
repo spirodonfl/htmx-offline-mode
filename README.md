@@ -20,6 +20,7 @@ To achieve offline mode, we are going to implement at least a few different feat
 * Local storage (so localStorage OR sqlocal?)
 * HTMX
 * WebWorkers
+* - (link to review)[https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Offline_Service_workers]
 
 ## Where does WASM fit in?
 
