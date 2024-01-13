@@ -37,10 +37,10 @@ Optimistic updates
 
 ### TODO
 
-[] How do we capture HTMX requests (outgoing)?
-[] Can we get a simple web worker to tell us if we're online/offline
-[] How do we convert capture HTMX requests to data we can store?
-[] Where do we store said data (refer to Dumping Ground for awesome Chris ideas)
-[] How do we store required success/fail operations when we finally ship the requests?
-[] How do we deal with requests interactivity while offline?
-[] How do we fire off requests from DB once we go back online
+- [ ] How do we capture HTMX requests (outgoing)?
+- [ ] Can we get a simple web worker to tell us if we're online/offline
+- [ ] How do we convert capture HTMX requests to data we can store?
+- [ ] Where do we store said data (refer to Dumping Ground for awesome Chris ideas)
+- [ ] How do we store required success/fail operations when we finally ship the requests?
+- [ ] How do we deal with requests interactivity while offline?
+- [ ] How do we fire off requests from DB once we go back online?
