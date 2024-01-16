@@ -1,32 +1,34 @@
-var QUEUE = [];
+let QUEUE = localStorage.get('htmx-offline-queue');
+if (QUEUE === null) {
+    QUEUE = [];
+    localStorage.setItem('htmx-offline-queue', []);
+}
 
 htmx.defineExtension('hx-offline', {
     onEvent: function (name, evt) {
-        console.log('Fired event', {name, evt});
+        // console.log('Fired event', {name, evt});
         if (name === 'htmx:beforeRequest') {
             if (!navigator.onLine) {
-                // add to queue
-                console.log(evt);
                 QUEUE.push({trigger: generateTriggerSpecs(evt.srcElement), element: evt.srcElement});
+                localStorage.setItem('htmx-offline-queue', QUEUE);
             }
         }
     }
 });
 
 function matches(elt, selector) {
-    var matchesFunction = elt.matches || elt.matchesSelector || elt.msMatchesSelector || elt.mozMatchesSelector || elt.webkitMatchesSelector || elt.oMatchesSelector;
+    let matchesFunction = elt.matches || elt.matchesSelector || elt.msMatchesSelector || elt.mozMatchesSelector || elt.webkitMatchesSelector || elt.oMatchesSelector;
     return matchesFunction && matchesFunction.call(elt, selector);
 }
 
-// TODO: Get triggers either htmx.config.triggerSpecsCache OR from your copied triggerSpecs from htmx
-var INPUT_SELECTOR = 'input, textarea, select';
+let INPUT_SELECTOR = 'input, textarea, select';
 function generateTriggerSpecs(elt) {
-    var explicit_trigger = elt.getAttribute('hx-trigger');
+    let explicit_trigger = elt.getAttribute('hx-trigger');
     if (explicit_trigger) {
         return explicit_trigger;
     }
 
-    var trigger_specs = [];
+    let trigger_specs = [];
     if (trigger_specs.length > 0) {
         return trigger_specs;
     } else if (matches(elt, 'form')) {
@@ -47,7 +49,7 @@ window.addEventListener('online', function (evt) {
 
     if (navigator.onLine) {
         // Release the Kraken
-        for (var i = 0; i < QUEUE.length; ++i) {
+        for (let i = 0; i < QUEUE.length; ++i) {
             // execute QUEUE[i].trigger via QUEUE[i].elt
             // htmx.trigger(trigger, elt, return)
             htmx.trigger(QUEUE[i].element, QUEUE[i].trigger, function (e) {
@@ -55,14 +57,11 @@ window.addEventListener('online', function (evt) {
             });
         }
         QUEUE = [];
+        localStorage.setItem('htmx-offline-queue', []);
     }
-
-    // TODO: Fire events
 });
 window.addEventListener('offline', function (evt) {
     console.log('Offline');
     console.log(evt);
     console.log(navigator.onLine);
-
-    // TODO: Store events
 });
