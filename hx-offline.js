@@ -1,4 +1,4 @@
-let QUEUE = localStorage.get('htmx-offline-queue');
+let QUEUE = localStorage.getItem('htmx-offline-queue');
 if (QUEUE === null) {
     QUEUE = [];
     localStorage.setItem('htmx-offline-queue', []);
